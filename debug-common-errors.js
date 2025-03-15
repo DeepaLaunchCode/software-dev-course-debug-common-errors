@@ -24,22 +24,30 @@ Think about which debugging methods you found most useful and how you might appl
 // Description:
 // This program is intended to display a simple prompt in the console but fails to run.
 
-console.log("Welcome to the bootcamp
+console.log("Welcome to the bootcamp");
 
-// What’s Wrong?
+// What’s Wrong? Above code is not having double quote and closing ), also missing at the end ;
+
 
 
 // Program B
 // Description:
 // This code attempts to multiply each number in an array by 2 and display the results. However, it crashes at runtime.
 
-let numbers = [2, 4, "eight"];
+let numbers = [2, 4, "eight"]; // we can either replace data corrected as 8
 for (let i = 0; i < numbers.length; i++) {
-  let doubled = numbers[i] * 2;
-  console.log(doubled);
+  if (typeof numbers[i] === "number") {
+    let doubled = numbers[i] * 2;
+    console.log(doubled);
+  } else {
+    console.log(`Skipping invalid element: ${numbers[i]}`);
+  }
 }
-
 // What’s Wrong?
+/*
+The array contains a string ("eight"), which causes an issue when multiplied by 2.
+JavaScript will return NaN (Not a Number) for "eight" * 2, leading to an unintended output.
+corrected code above, in case of currently eight  we will log error*/
 
 
 
@@ -51,12 +59,17 @@ function isPrime(num) {
   if (num < 2) return false;
   for (let i = 2; i < num; i++) {
     if (num % i === 0) {
-      return true;  // Supposed to indicate num is NOT prime
+      return false; // Number is NOT prime
     }
   }
-  return false; // Supposed to indicate num IS prime
+  return true; // Number is prime
 }
+
 
 console.log(isPrime(7)); // Expected true but gets false
 
 // What’s Wrong?
+/*Issue:
+The function incorrectly returns true when a number is divisible by another number.
+The return statement inside the loop (return true;) is wrong because it should only return false when a divisor is found. 
+corrected the code */
